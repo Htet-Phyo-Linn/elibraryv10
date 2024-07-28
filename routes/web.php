@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Middleware\AdminAuth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\admin\AdminController;
-use App\Http\Middleware\AdminAuth;
+use App\Http\Controllers\admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,22 +47,15 @@ Route::middleware(['auth', 'verified', 'adminAuth'])->group(function () {
 
     Route::get('/dashboard',[AuthController::class, 'dashboard'])->name("dashboard");
 
-    ///note
-    // Route::group(['prefix'=> 'admin'], function () {
-    //     // Route::get('dashboard', function() {
-    //     //     return view('admin.dashboard');
-    //     // })->name('admin#dashboard');
-
-    //     // Route::get('dashboard', [AuthController::class,'dashboardPage'])->name('admin#dashboard');
-    // });
-
-    // Route::group(['prefix'=> 'user', ''], function () {
-    //     // Route::get('home', function() {
-    //     //     return view('user.home');
-    //     // })->name('user#home');
-
-    //     // Route::get('home', [AuthController::class,'homePage'])->name('user#home');
-    // });
+    Route::prefix('admin')->group(function () {
+        Route::prefix('category')->group(function() {
+            Route::get('list', [CategoryController::class, 'list'])->name('category.list');
+            Route::post('create', [CategoryController::class, 'create'])->name('category.create');
+            Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+            Route::get('edit/{id}', [CategoryController::class, 'editPage'])->name('category.editPage');
+            Route::post('edit', [CategoryController::class, 'edit'])->name('category.edit');
+        });
+    });
 
 });
 
