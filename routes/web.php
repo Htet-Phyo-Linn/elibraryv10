@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\AuthorsController;
+use App\Http\Controllers\BooksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,12 +50,28 @@ Route::middleware(['auth', 'verified', 'adminAuth'])->group(function () {
     Route::get('/dashboard',[AuthController::class, 'dashboard'])->name("dashboard");
 
     Route::prefix('admin')->group(function () {
+        Route::get('profile/{id}', [AdminController::class, 'profile'])->name('admim.profile');
+        Route::post('updateProfile', [AdminController::class, 'update'])->name('admin.update');
+
         Route::prefix('category')->group(function() {
             Route::get('list', [CategoryController::class, 'list'])->name('category.list');
             Route::post('create', [CategoryController::class, 'create'])->name('category.create');
             Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
             Route::get('edit/{id}', [CategoryController::class, 'editPage'])->name('category.editPage');
             Route::post('edit', [CategoryController::class, 'edit'])->name('category.edit');
+        });
+
+        Route::prefix('author')->group(function() {
+            Route::get('list', [AuthorsController::class, 'list'])->name('author.list');
+            Route::post('create', [AuthorsController::class, 'create'])->name('author.create');
+            Route::get('delete/{id}', [AuthorsController::class, 'delete'])->name('author.delete');
+            Route::get('edit/{id}', [AuthorsController::class, 'editPage'])->name('author.editPage');
+            Route::post('edit', [AuthorsController::class, 'edit'])->name('author.edit');
+        });
+
+        Route::prefix('book')->group(function () {
+            Route::get('list', [BooksController::class, 'list'])->name('book.list');
+            Route::get('addBook', [BooksController::class, 'addBookPage'])->name('book.addPage');
         });
     });
 

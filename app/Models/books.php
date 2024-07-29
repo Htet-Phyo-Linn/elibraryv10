@@ -9,5 +9,5 @@ class books extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','author_id','category_id','production_year'];
+    protected $fillable = ['title','author_id','category_id','production_year','description','image'];
 }

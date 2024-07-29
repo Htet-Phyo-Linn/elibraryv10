@@ -212,7 +212,7 @@
                                 </div>
                             </div>
                             <hr class="m-0">
-                            <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i> My
+                            <a class="dropdown-item" href="{{ route('admim.profile', Auth::user()->id) }}"> <i class="me-2" data-feather="user"></i> My
                                 Profile</a>
                             <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
                                     data-feather="settings"></i>Settings</a>
@@ -233,7 +233,7 @@
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="{{ route('admim.profile', Auth::user()->id) }}">My Profile</a>
                     <a class="dropdown-item" href="generalsettings.html">Settings</a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
@@ -257,11 +257,11 @@
                             <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/product.svg') }}" alt="img"><span>
                                     Product</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="productlist.html">Product List</a></li>
-                                <li><a href="addproduct.html">Add Product</a></li>
                                 <li><a href="{{ route('category.list') }}">Category List</a></li>
-                                <li><a href="addcategory.html">Add Category</a></li>
-                                <li><a href="subcategorylist.html">Sub Category List</a></li>
+                                <li><a href="{{ route('book.list') }}">Book List</a></li>
+                                <li><a href="{{ route('book.addPage') }}">Add Book</a></li>
+
+                                <li><a href="{{ route('author.list') }}">Author List</a></li>
                                 <li><a href="subaddcategory.html">Add Sub Category</a></li>
                                 <li><a href="brandlist.html">Brand List</a></li>
                                 <li><a href="addbrand.html">Add Brand</a></li>

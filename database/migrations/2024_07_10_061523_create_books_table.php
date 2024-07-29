@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->integer('author_id');
             $table->integer('category_id');
-            $table->integer('production_year');
+            $table->string('production_year');
+            $table->longText('description');
+            $table->string('image');
             $table->timestamps();
         });
     }

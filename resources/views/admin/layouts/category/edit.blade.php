@@ -15,18 +15,18 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <form action="{{ route('category.edit') }}" method="POST">
+                        <form action="{{ route('author.edit') }}" method="POST">
                             @csrf
                             <div class="col-lg-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Category Name</label>
+                                    <label>Author Name</label>
                                     <input type="text" name="name" value="{{ old('name', $data->name) }}">
                                     <input type="hidden" name="id" value="{{ $data->id }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <button href="submit" class="btn btn-submit me-2">Submit</button>
-                                <a href="{{ route('category.list') }}" class="btn btn-cancel">Cancel</a>
+                                <a href="{{ route('author.list') }}" class="btn btn-cancel">Cancel</a>
                             </div>
                         </form>
                     </div>
