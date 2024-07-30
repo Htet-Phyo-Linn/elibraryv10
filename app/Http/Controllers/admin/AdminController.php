@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -27,6 +28,22 @@ class AdminController extends Controller
             'name' => $request->name,
             'email' => $request->email
         ];
+
+        // for image
+        if($request->hasFile('image')) {
+            $dbImage = User::where('id', Auth::user()->id)->first();
+            $dbImage = $dbImage->image;
+            // dd($dbImage);
+            if($dbImage != null) {
+                Storage::delete('public/users/' . $dbImage);
+            }
+
+            $image = uniqid() . $request->file('image')->getClientOriginalName();
+
+            $request->file('image')->storeAs('public/users', $image);
+            $data['image'] = $image;
+        }
+
         User::where('id', $request->id)->update($data);
         return back()->with(['updateSuccess' => 'Successfully updated ...']);
     }

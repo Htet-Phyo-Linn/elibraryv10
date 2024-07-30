@@ -72,6 +72,8 @@ Route::middleware(['auth', 'verified', 'adminAuth'])->group(function () {
         Route::prefix('book')->group(function () {
             Route::get('list', [BooksController::class, 'list'])->name('book.list');
             Route::get('addBook', [BooksController::class, 'addBookPage'])->name('book.addPage');
+            Route::post('create', [BooksController::class, 'create'])->name('book.create');
+            Route::get('delete/{id}', [BooksController::class, 'delete'])->name('book.delete');
         });
     });
 

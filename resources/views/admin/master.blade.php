@@ -67,7 +67,8 @@
                                     <span><img src="{{ asset('admin/img/icons/closes.svg') }}" alt="img"></span>
                                 </div>
                             </div>
-                            <a class="btn" id="searchdiv"><img src="{{ asset('admin/img/icons/search.svg') }}" alt="img"></a>
+                            <a class="btn" id="searchdiv"><img src="{{ asset('admin/img/icons/search.svg') }}"
+                                    alt="img"></a>
                         </form>
                     </div>
                 </li>
@@ -111,11 +112,13 @@
                                     <a href="activities.html">
                                         <div class="media d-flex">
                                             <span class="avatar flex-shrink-0">
-                                                <img alt="" src="{{ asset('admin/img/profiles/avatar-02.jpg') }}">
+                                                <img alt=""
+                                                    src="{{ asset('admin/img/profiles/avatar-02.jpg') }}">
                                             </span>
                                             <div class="media-body flex-grow-1">
                                                 <p class="noti-details"><span class="noti-title">John Doe</span> added
-                                                    new task <span class="noti-title">Patient appointment booking</span>
+                                                    new task <span class="noti-title">Patient appointment
+                                                        booking</span>
                                                 </p>
                                                 <p class="noti-time"><span class="notification-time">4 mins ago</span>
                                                 </p>
@@ -127,10 +130,12 @@
                                     <a href="activities.html">
                                         <div class="media d-flex">
                                             <span class="avatar flex-shrink-0">
-                                                <img alt="" src="{{ asset('admin/img/profiles/avatar-03.jpg') }}">
+                                                <img alt=""
+                                                    src="{{ asset('admin/img/profiles/avatar-03.jpg') }}">
                                             </span>
                                             <div class="media-body flex-grow-1">
-                                                <p class="noti-details"><span class="noti-title">Tarah Shropshire</span>
+                                                <p class="noti-details"><span class="noti-title">Tarah
+                                                        Shropshire</span>
                                                     changed the task name <span class="noti-title">Appointment booking
                                                         with payment gateway</span></p>
                                                 <p class="noti-time"><span class="notification-time">6 mins ago</span>
@@ -143,7 +148,8 @@
                                     <a href="activities.html">
                                         <div class="media d-flex">
                                             <span class="avatar flex-shrink-0">
-                                                <img alt="" src="{{ asset('admin/img/profiles/avatar-06.jpg') }}">
+                                                <img alt=""
+                                                    src="{{ asset('admin/img/profiles/avatar-06.jpg') }}">
                                             </span>
                                             <div class="media-body flex-grow-1">
                                                 <p class="noti-details"><span class="noti-title">Misty Tison</span>
@@ -160,13 +166,15 @@
                                     <a href="activities.html">
                                         <div class="media d-flex">
                                             <span class="avatar flex-shrink-0">
-                                                <img alt="" src="{{ asset('admin/img/profiles/avatar-17.jpg') }}">
+                                                <img alt=""
+                                                    src="{{ asset('admin/img/profiles/avatar-17.jpg') }}">
                                             </span>
                                             <div class="media-body flex-grow-1">
                                                 <p class="noti-details"><span class="noti-title">Rolland Webber</span>
                                                     completed task <span class="noti-title">Patient and Doctor video
                                                         conferencing</span></p>
-                                                <p class="noti-time"><span class="notification-time">12 mins ago</span>
+                                                <p class="noti-time"><span class="notification-time">12 mins
+                                                        ago</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -176,10 +184,12 @@
                                     <a href="activities.html">
                                         <div class="media d-flex">
                                             <span class="avatar flex-shrink-0">
-                                                <img alt="" src="{{ asset('admin/img/profiles/avatar-13.jpg') }}">
+                                                <img alt=""
+                                                    src="{{ asset('admin/img/profiles/avatar-13.jpg') }}">
                                             </span>
                                             <div class="media-body flex-grow-1">
-                                                <p class="noti-details"><span class="noti-title">Bernardo Galaviz</span>
+                                                <p class="noti-details"><span class="noti-title">Bernardo
+                                                        Galaviz</span>
                                                     added new task <span class="noti-title">Private chat module</span>
                                                 </p>
                                                 <p class="noti-time"><span class="notification-time">2 days ago</span>
@@ -198,21 +208,34 @@
 
                 <li class="nav-item dropdown has-arrow main-drop">
                     <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
-                        <span class="user-img"><img src="{{ asset('admin/img/profiles/avator1.jpg') }}" alt="">
-                            <span class="status online"></span></span>
+                        <span class="user-img">
+                            @if (Auth::user()->image == null)
+                                <img src="{{ asset('admin/img/profiles/avator1.jpg') }}" alt="">
+                            @else
+                                <img src="{{ asset('storage/users/' . Auth::user()->image) }}" alt="">
+                            @endif
+                            <span class="status online"></span>
+                        </span>
                     </a>
                     <div class="dropdown-menu menu-drop-user">
                         <div class="profilename">
                             <div class="profileset">
-                                <span class="user-img"><img src="{{ asset('admin/img/profiles/avator1.jpg') }}" alt="">
-                                    <span class="status online"></span></span>
+                                <span class="user-img">
+                                    @if (Auth::user()->image == null)
+                                        <img src="{{ asset('admin/img/default.png') }}" alt="">
+                                    @else
+                                        <img src="{{ asset('storage/users/' . Auth::user()->image) }}" alt="">
+                                    @endif
+                                    <span class="status online"></span>
+                                </span>
                                 <div class="profilesets">
                                     <h6>{{ Auth::user()->name }}</h6>
                                     <h5>Admin</h5>
                                 </div>
                             </div>
                             <hr class="m-0">
-                            <a class="dropdown-item" href="{{ route('admim.profile', Auth::user()->id) }}"> <i class="me-2" data-feather="user"></i> My
+                            <a class="dropdown-item" href="{{ route('admim.profile', Auth::user()->id) }}"> <i
+                                    class="me-2" data-feather="user"></i> My
                                 Profile</a>
                             <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
                                     data-feather="settings"></i>Settings</a>
@@ -220,7 +243,8 @@
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <button type="submit" class="dropdown-item logout pb-0">
-                                    <img src="{{ asset('admin/img/icons/log-out.svg') }}" class="me-2" alt="img">Logout
+                                    <img src="{{ asset('admin/img/icons/log-out.svg') }}" class="me-2"
+                                        alt="img">Logout
                                 </button>
                             </form>
                         </div>
@@ -250,11 +274,13 @@
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul>
                         <li class="active">
-                            <a href="index.html"><img src="{{ asset('admin/img/icons/dashboard.svg') }}" alt="img"><span>
+                            <a href="index.html"><img src="{{ asset('admin/img/icons/dashboard.svg') }}"
+                                    alt="img"><span>
                                     Dashboard</span> </a>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/product.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/product.svg') }}"
+                                    alt="img"><span>
                                     Product</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="{{ route('category.list') }}">Category List</a></li>
@@ -270,7 +296,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/sales1.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/sales1.svg') }}"
+                                    alt="img"><span>
                                     Sales</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="saleslist.html">Sales List</a></li>
@@ -281,7 +308,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/purchase1.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/purchase1.svg') }}"
+                                    alt="img"><span>
                                     Purchase</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="purchaselist.html">Purchase List</a></li>
@@ -290,7 +318,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/expense1.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/expense1.svg') }}"
+                                    alt="img"><span>
                                     Expense</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="expenselist.html">Expense List</a></li>
@@ -299,7 +328,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/quotation1.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/quotation1.svg') }}"
+                                    alt="img"><span>
                                     Quotation</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="quotationList.html">Quotation List</a></li>
@@ -307,7 +337,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/transfer1.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/transfer1.svg') }}"
+                                    alt="img"><span>
                                     Transfer</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="transferlist.html">Transfer List</a></li>
@@ -316,7 +347,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/return1.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/return1.svg') }}"
+                                    alt="img"><span>
                                     Return</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="salesreturnlist.html">Sales Return List</a></li>
@@ -326,7 +358,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/users1.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/users1.svg') }}"
+                                    alt="img"><span>
                                     People</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="customerlist.html">Customer List</a></li>
@@ -340,7 +373,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/places.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/places.svg') }}"
+                                    alt="img"><span>
                                     Places</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="newcountry.html">New Country</a></li>
@@ -388,8 +422,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="bar-chart-2"></i> <span> Charts </span> <span
-                                    class="menu-arrow"></span></a>
+                            <a href="javascript:void(0);"><i data-feather="bar-chart-2"></i> <span> Charts </span>
+                                <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="chart-apex.html">Apex Charts</a></li>
                                 <li><a href="chart-js.html">Chart Js</a></li>
@@ -437,7 +471,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/product.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/product.svg') }}"
+                                    alt="img"><span>
                                     Application</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="chat.html">Chat</a></li>
@@ -446,7 +481,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/time.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/time.svg') }}"
+                                    alt="img"><span>
                                     Report</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="purchaseorderreport.html">Purchase order report</a></li>
@@ -459,7 +495,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/users1.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/users1.svg') }}"
+                                    alt="img"><span>
                                     Users</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="newuser.html">New User </a></li>
@@ -467,7 +504,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/settings.svg') }}" alt="img"><span>
+                            <a href="javascript:void(0);"><img src="{{ asset('admin/img/icons/settings.svg') }}"
+                                    alt="img"><span>
                                     Settings</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="generalsettings.html">General Settings</a></li>
