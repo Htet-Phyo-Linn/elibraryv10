@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\books;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,7 +33,16 @@ class AuthController extends Controller
     }
 
      public function homePage(){
-        return view('user.home');
+        $latestBooks = books::select('books.*', 'categories.name as category_name', 'authors.name as author_name')
+        ->leftJoin('categories', 'books.category_id', 'categories.id')
+        ->leftJoin('authors', 'books.author_id', 'authors.id')
+        ->orderBy('books.created_at', 'desc')
+        ->take(8)
+        ->get();
+        // $latestBooks = books::all();
+        // dd($count);
+        // dd($latestBooks);
+        return view('user.layouts.home ', compact('latestBooks'));
      }
 
     //  public function dashboardPage(){
