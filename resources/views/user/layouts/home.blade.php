@@ -6,8 +6,8 @@
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-md-12 col-lg-7">
-                    <h4 class="mb-3 text-secondary">100% Organic Foods</h4>
-                    <h1 class="mb-5 display-3 text-primary">Organic Veggies & Fruits Foods</h1>
+                    <h4 class="mb-3 text-secondary">Every book is a new adventure.</h4>
+                    <h1 class="mb-5 display-3 text-primary">Libraries are gateways to countless worlds.</h1>
                     <div class="position-relative mx-auto">
                         <input class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number"
                             placeholder="Search">
@@ -22,12 +22,12 @@
                             <div class="carousel-item active rounded">
                                 <img src="{{ asset('user/img/images1.jpeg') }}"
                                     class="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide">
-                                <a href="#" class="btn px-4 py-2 text-white rounded">Fruites</a>
+                                <a href="#" class="btn px-4 py-2 text-white rounded">Science</a>
                             </div>
                             <div class="carousel-item rounded">
                                 <img src="{{ asset('user/img/images2.jpeg') }}" class="img-fluid w-100 h-100 rounded"
                                     alt="Second slide">
-                                <a href="#" class="btn px-4 py-2 text-white rounded">Vesitables</a>
+                                <a href="#" class="btn px-4 py-2 text-white rounded">History</a>
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"

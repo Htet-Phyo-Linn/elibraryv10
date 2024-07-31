@@ -83,6 +83,10 @@ Route::middleware(['auth', 'verified', 'adminAuth'])->group(function () {
 Route::middleware(['auth', 'verified', 'userAuth'])->group(function () {
 
     Route::get('/home', [AuthController::class,'homePage'])->name('user#home');
+    Route::prefix('user')->group(function() {
+        Route::get('/books', [UserController::class, 'books'])->name('user.books');
+        Route::get('filter', [UserController::class, 'filter'])->name('user.filter');
+    });
 
 });
 
