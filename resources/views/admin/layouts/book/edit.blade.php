@@ -13,13 +13,14 @@
 
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('book.create') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('book.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="id" value="{{ $book->id }}">
                         <div class="row">
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Book Title</label>
-                                    <input type="text" name="title">
+                                    <input type="text" name="title" value="{{ old('title', $book->title) }}">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
@@ -28,7 +29,7 @@
                                     <select class="form-control" name="category">
                                         <option value="">Choose Category</option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" @if($book->category_id == $category->id) selected @endif>{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -39,7 +40,7 @@
                                     <select class="form-control" name="author">
                                         <option value="">Choose Author</option>
                                         @foreach ($authors as $author)
-                                            <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                            <option value="{{ $author->id }}" @if($book->author_id == $author->id) selected @endif>{{ $author->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -47,13 +48,13 @@
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Production Year</label>
-                                    <input type="text" name="productionYear">
+                                    <input type="text" name="productionYear" value="{{ old('productionYear', $book->production_year) }}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea class="form-control" name="description"></textarea>
+                                    <textarea class="form-control" name="description">{{ old('description', $book->description) }}</textarea>
                                 </div>
                             </div>
                             <div class="col-lg-12">

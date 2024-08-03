@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\books;
+use App\Models\authors;
+use App\Models\categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,7 +44,9 @@ class AuthController extends Controller
         // $latestBooks = books::all();
         // dd($count);
         // dd($latestBooks);
-        return view('user.layouts.home ', compact('latestBooks'));
+        $categories = categories::all();
+        $authors = authors::all();
+        return view('user.layouts.home ', compact('latestBooks', 'categories', 'authors'));
      }
 
     //  public function dashboardPage(){

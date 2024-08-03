@@ -79,10 +79,10 @@
                                         <td>{{ $book->production_year }}</td>
                                         <td>{{ $book->description }}</td>
                                         <td>
-                                            <a class="me-3" href="product-details.html">
+                                            {{-- <a class="me-3" href="product-details.html">
                                                 <img src="{{ asset('admin/img/icons/eye.svg') }}" alt="img">
-                                            </a>
-                                            <a class="me-3" href="editproduct.html">
+                                            </a> --}}
+                                            <a class="me-3" href="{{ route('book.editPage', $book->id) }}">
                                                 <img src="{{ asset('admin/img/icons/edit.svg') }}" alt="img">
                                             </a>
                                             <a class="confirm-text" href="{{ route('book.delete', $book->id) }}">

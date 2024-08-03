@@ -74,6 +74,8 @@ Route::middleware(['auth', 'verified', 'adminAuth'])->group(function () {
             Route::get('addBook', [BooksController::class, 'addBookPage'])->name('book.addPage');
             Route::post('create', [BooksController::class, 'create'])->name('book.create');
             Route::get('delete/{id}', [BooksController::class, 'delete'])->name('book.delete');
+            Route::get('edit/{id}', [BooksController::class, 'edit'])->name('book.editPage');
+            Route::post('update', [BooksController::class, 'update'])->name('book.update');
         });
     });
 
@@ -85,7 +87,9 @@ Route::middleware(['auth', 'verified', 'userAuth'])->group(function () {
     Route::get('/home', [AuthController::class,'homePage'])->name('user#home');
     Route::prefix('user')->group(function() {
         Route::get('/books', [UserController::class, 'books'])->name('user.books');
-        Route::get('filter', [UserController::class, 'filter'])->name('user.filter');
+        Route::get('filterCategory/{id}', [UserController::class, 'filterCategory'])->name('user.filterCategory');
+        Route::get('filterAuthor/{id}', [UserController::class, 'filterAuthor'])->name('user.filterAuthor');
+        Route::get('bookDetail/{id}', [UserController::class, 'bookDetail'])->name('user.bookDetail');
     });
 
 });

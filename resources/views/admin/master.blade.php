@@ -212,7 +212,7 @@
                             @if (Auth::user()->image == null)
                                 <img src="{{ asset('admin/img/profiles/avator1.jpg') }}" alt="">
                             @else
-                                <img src="{{ asset('storage/users/' . Auth::user()->image) }}" alt="">
+                                <img style="height: 35px" src="{{ asset('storage/users/' . Auth::user()->image) }}" alt="">
                             @endif
                             <span class="status online"></span>
                         </span>
@@ -224,7 +224,7 @@
                                     @if (Auth::user()->image == null)
                                         <img src="{{ asset('admin/img/default.png') }}" alt="">
                                     @else
-                                        <img src="{{ asset('storage/users/' . Auth::user()->image) }}" alt="">
+                                        <img style="height: 100%" src="{{ asset('storage/users/' . Auth::user()->image) }}" alt="">
                                     @endif
                                     <span class="status online"></span>
                                 </span>

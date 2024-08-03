@@ -6,6 +6,7 @@ use App\Models\books;
 use App\Models\authors;
 use App\Models\categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class BooksController extends Controller
@@ -43,6 +44,32 @@ class BooksController extends Controller
     public function delete($id) {
         books::where('id', $id)->delete();
         return back()->with(['deleteSuccess' => 'Successfully deleted ...']);
+    }
+
+    // edit page
+    public function edit($id) {
+        $book = books::where('id', $id)->first();
+        $categories = categories::all();
+        $authors = authors::all();
+        return view('admin.layouts.book.edit', compact('book', 'categories', 'authors'));
+    }
+
+    public function update(Request $request) {
+        $data = $this->getBookInfo($request);
+        if($request->hasFile('image')){
+            $oldImageName = books::where('id',$request->id)->first();
+            $oldImageName = $oldImageName->image;
+            if($oldImageName != null){
+                Storage::delete('public/books/' . $oldImageName);
+            }
+
+            $fileName = uniqid().$request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/books',$fileName);
+            $data['image'] = $fileName;
+        }
+
+        books::where('id', $request->id)->update($data);
+        return redirect()->route('book.list')->with(['updateSuccess' => 'Successfully updated ...']);
     }
 
     // book validation check

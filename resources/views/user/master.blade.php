@@ -39,8 +39,6 @@
         <div class="spinner-grow text-primary" role="status"></div>
     </div>
     <!-- Spinner End -->
-
-
     <!-- Navbar start -->
     <div class="container-fluid fixed-top">
         <div class="container px-0">
@@ -60,10 +58,25 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                             <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                <a href="cart.html" class="dropdown-item">Cart</a>
-                                <a href="chackout.html" class="dropdown-item">Chackout</a>
+                                @foreach ($categories as $category)
+                                    <a href="{{ route('user.filterCategory', $category->id) }}"
+                                        class="dropdown-item">{{ $category->name }}</a>
+                                @endforeach
+                                {{-- <a href="chackout.html" class="dropdown-item">Chackout</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
+                                <a href="404.html" class="dropdown-item">404 Page</a> --}}
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Authors</a>
+                            <div class="dropdown-menu m-0 bg-secondary rounded-0">
+                                @foreach ($authors as $author)
+                                    <a href="{{ route('user.filterAuthor', $author->id) }}"
+                                        class="dropdown-item">{{ $author->name }}</a>
+                                @endforeach
+                                {{-- <a href="chackout.html" class="dropdown-item">Chackout</a>
+                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                <a href="404.html" class="dropdown-item">404 Page</a> --}}
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
