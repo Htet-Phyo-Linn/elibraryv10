@@ -57,7 +57,7 @@
                                                     <p>{{ $book->description }}</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-6 mb-1">by - {{ $book->author_name }}</p>
-                                                        <a href="#"
+                                                        <a href="{{ route('user.bookDetail', $book->id) }}"
                                                             class="btn border border-secondary rounded-pill px-3 text-primary">View</a>
                                                     </div>
                                                 </div>

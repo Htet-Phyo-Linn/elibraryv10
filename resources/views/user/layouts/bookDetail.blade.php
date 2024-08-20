@@ -41,7 +41,7 @@
                                     </button>
                                 </div>
                             </div> --}}
-                            <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">Download</a>
+                            <a href="{{ $book->url }}" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">Download</a>
                         </div>
                         {{-- <div class="col-lg-12">
                             <nav>

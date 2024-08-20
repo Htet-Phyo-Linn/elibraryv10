@@ -84,6 +84,81 @@
                 </form>
             </div>
 
+            @if(session('changeSuccess'))
+                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                    <strong>Success!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <div class="page-header">
+                <div class="page-title">
+                    <h4>Change Password</h4>
+                </div>
+            </div>
+
+            <div class="card">
+                <form action="{{ route('admin.changePassword') }}" method="post">
+                    @csrf
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Current password</label>
+                                    <input type="password" class="@error('password') is-invalid @enderror" name="password">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    @if(session('notMatch'))
+                                        <div class="text-danger">
+                                            {{ session('notMatch') }}
+                                        </div>
+                                    @endif
+                                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                                </div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>New password</label>
+                                    <input type="password" class="@error('newPassword') is-invalid @enderror" name="newPassword">
+                                    @error('newPassword')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                                </div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Confirm new password</label>
+                                    <input type="password" class="@error('confirmPassword') is-invalid @enderror" name="confirmPassword">
+                                    @error('confirmPassword')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-submit me-2">Submit</button>
+                                <a href="{{ route('dashboard') }}" class="btn btn-cancel">Cancel</a>
+                            </div>
+                        </div>
+                        <form action="{{ route('admin.update') }}" method="POST">
+                            @csrf
+
+                        </form>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 @endsection

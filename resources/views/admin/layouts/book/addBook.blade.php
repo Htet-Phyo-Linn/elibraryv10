@@ -50,6 +50,12 @@
                                     <input type="text" name="productionYear">
                                 </div>
                             </div>
+                            <div class="col-lg-4 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Movie URL</label>
+                                    <input type="text" name="url">
+                                </div>
+                            </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Description</label>

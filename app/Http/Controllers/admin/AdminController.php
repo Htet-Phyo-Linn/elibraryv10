@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -46,6 +47,32 @@ class AdminController extends Controller
 
         User::where('id', $request->id)->update($data);
         return back()->with(['updateSuccess' => 'Successfully updated ...']);
+    }
+
+    // change password
+    public function changePassword(Request $request) {
+        $this->passwordValidationCheck($request);
+        $user = User::select('password')->where('id', Auth::user()->id)->first();
+        $dbHashValue = $user->password;
+        // dd($dbHashValue);
+
+        if(Hash::check($request->password, $dbHashValue)) {
+            User::where('id', Auth::user()->id)->update([
+                'password' => Hash::make($request->newPassword)
+            ]);
+
+            return back()->with(['changeSuccess' => 'Password Changed!']);
+        }
+        return back()->with(['notMatch' => 'Incorrect current password. Try again!']);
+    }
+
+    // password validation check
+    private function passwordValidationCheck($request) {
+        Validator::make($request->all(), [
+            'password' => 'required|max:18',
+            'newPassword' => 'required|min:6|max:18',
+            'confirmPassword' => 'required|min:6|max:18|same:newPassword'
+        ])->validate();
     }
 
     // account validation check

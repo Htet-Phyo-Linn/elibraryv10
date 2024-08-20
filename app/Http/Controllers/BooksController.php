@@ -80,6 +80,7 @@ class BooksController extends Controller
             'category' => 'required',
             'productionYear' => 'required',
             'description' => 'required',
+            'url' => 'required' ,
             'image' => 'mimes:png,jpg,jpeg,webp|file'
         ])->validate();
     }
@@ -92,6 +93,7 @@ class BooksController extends Controller
             'category_id' => $request->category ,
             'production_year' => $request->productionYear ,
             'description' => $request->description ,
+            'url' => $request->url
         ];
     }
 }

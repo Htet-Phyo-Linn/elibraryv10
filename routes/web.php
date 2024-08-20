@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verified', 'adminAuth'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('profile/{id}', [AdminController::class, 'profile'])->name('admim.profile');
         Route::post('updateProfile', [AdminController::class, 'update'])->name('admin.update');
+        Route::post('changePassword', [AdminController::class, 'changePassword'])->name('admin.changePassword');
 
         Route::prefix('category')->group(function() {
             Route::get('list', [CategoryController::class, 'list'])->name('category.list');
@@ -90,6 +91,9 @@ Route::middleware(['auth', 'verified', 'userAuth'])->group(function () {
         Route::get('filterCategory/{id}', [UserController::class, 'filterCategory'])->name('user.filterCategory');
         Route::get('filterAuthor/{id}', [UserController::class, 'filterAuthor'])->name('user.filterAuthor');
         Route::get('bookDetail/{id}', [UserController::class, 'bookDetail'])->name('user.bookDetail');
+        Route::get('profile/{id}', [UserController::class, 'profilePage'])->name('user.profile');
+        Route::post('profile/update', [UserController::class, 'updateProfile'])->name('user.update');
+        Route::post('changepassword', [UserController::class, 'changePassword'])->name('user.changePassword');
     });
 
 });
